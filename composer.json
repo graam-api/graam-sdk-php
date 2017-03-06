@@ -1,0 +1,8 @@
+{
+    "name": "wephone-saas/wephone-api",
+    "autoload": {
+        "psr-0" : {
+            "WEPHONE" : "src"
+        }
+    }
+}
