@@ -1,5 +1,5 @@
 {
-    "name": "wephone-saas/wephone-sdk",
+    "name": "wephone/sdk-php",
     "autoload": {
         "psr-0" : {
             "WEPHONE" : "src"
