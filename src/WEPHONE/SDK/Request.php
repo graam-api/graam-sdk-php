@@ -63,7 +63,6 @@ class Request
         }
 
         curl_close($c);
-        
         /* response */
         return $raw_response ? $data : new Response($data);
     }

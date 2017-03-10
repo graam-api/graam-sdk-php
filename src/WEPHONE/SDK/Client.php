@@ -9,16 +9,16 @@ namespace WEPHONE\SDK;
 
 class Client
 {
-    const API_URL = 'http://wephone-kngo.localnet.dev/ws/apikey/call_function';
+    const API_URL = '/ws/apikey/call_function';
     const SDK_VERSION = '1.0';
     
-	private $apiKey;
-    /** @var string API URL */
-    private $url;
+	private $url;
+	
     /** @var string[] HTTP Headers */
     private $headers = [];
     /** @var string proxy */
     private $proxy = null;
+    
     
 	function __construct() {
 	}
@@ -55,8 +55,10 @@ class Client
 	 * @param string $number: The phone number to be called
 	 * @param integer $timeout: The delay (in seconds) that we expect the number to answer. Otherwise, the call is consider failed
 	 */
-	public function setApiKey($apiKey) {
-		$this->apiKey = $apiKey;
+	public function init($apiKey, $domain='wephone-kngo.localnet.dev', $ssl=true) {
+		$url = ($ssl ? 'https' : 'http') . '://' . $domain . self::API_URL;
+		$url .= ( strpos('?', $url) !== false ? '&' : '?' ) . 'apikey=' . $apiKey;
+		$this->url = $url;
 	}
 
 	/**
@@ -78,7 +80,7 @@ class Client
             throw new Exception\LocalException('ID_TYPE_ERROR');
         }
 
-        if (!$this->apiKey) {
+        if (!$this->url) {
             throw new Exception\LocalException('API_KEY_ERROR');
         }
         
@@ -86,14 +88,9 @@ class Client
         $request->id = $id;
         $request->method = $method;
         $request->params = $params;
-
-        //$request->params['apikey'] = $this->apiKey; //update apikey in requested params
-
-        $url = $this->url ? $this->url : self::API_URL;
-        $url .= ( strpos('?', $url) !== false ? '&' : '?' ) . 'apikey=' . $this->apiKey; //update apikey in requested params
         
         $response = $request->send(
-            $url,
+            $this->url,
             null,
             $this->headers,
             $this->proxy
