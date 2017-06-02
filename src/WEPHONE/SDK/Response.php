@@ -8,8 +8,8 @@ namespace WEPHONE\SDK;
  */
 class Response
 {
-    public $jsonrpc;
-    public $id;
+//     public $jsonrpc;
+//     public $id;
     public $result;
     public $error;
 
@@ -28,7 +28,7 @@ class Response
         if (!is_object($data)) {
             throw new Exception\LocalException('RESPONSE_NOT_AN_OBJECT');
         }
-        if (!( property_exists($data, 'id') && property_exists($data, 'jsonrpc') && property_exists($data, 'status') && ( property_exists($data, 'error') || property_exists($data, 'answer') ) )) {
+        if (!( property_exists($data, 'status') && ( property_exists($data, 'error') || property_exists($data, 'answer') ) )) { //property_exists($data, 'id') && property_exists($data, 'jsonrpc') && 
             throw new Exception\LocalException('RESPONSE_MISSING_PROPERTY');
         }
         /* response */
@@ -37,8 +37,8 @@ class Response
         } else {
             $this->result = $data->answer;
         }
-        $this->id = $data->id;
-        $this->jsonrpc = $data->jsonrpc;
+//         $this->id = $data->id;
+//         $this->jsonrpc = $data->jsonrpc;
     }
 
     /**
