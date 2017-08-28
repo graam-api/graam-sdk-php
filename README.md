@@ -40,6 +40,73 @@ Then you just need to include one file in your code:
 require 'vendor/autoload.php';
 ```
 
+
+# System API
+
+System API is the API for initializing a new enterprise from client data. 
+This is the API can be called even if not logged on to the system.
+
+## Usage
+
+**Init**
+```php
+$sysClient = new \WEPHONE\SDK\SystemClient;
+$sysClient->init("api-key-code");
+```
+
+
+********************************************************************************
+
+
+### ENTERPRISE
+### Create a new enterprise
+
+```php
+$enterpriseData = array(
+    "name" => "Enterprise 1",
+    "domain" => "domain1",
+    "admin_email" => "email@domain.com",
+    "admin_password" => "password",
+    "subscription_pack" => "basic",
+    "did" => '842418001800'
+);
+$sysClient->call('enterprise.create', $enterpriseData);
+```
+
+### Enable an enterprise
+
+```php
+$sysClient->call('enterprise.enable', array("domain" => "domain1"));
+```
+
+### Disable an enterprise
+
+```php
+$sysClient->call('enterprise.disable', array("domain" => "domain1"));
+```
+
+### Get preauthenticated link
+
+```php
+$sysClient->call('user.get_preauthenticated_url', array(
+    "domain" => "domain1", 
+    "email" => "email@domain.com"
+));
+```
+
+### Get numbers available
+
+```php
+$sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
+```
+
+********************************************************************************
+
+
+
+#Enterprise API
+
+
 ## Usage
 
 **Init**
@@ -113,64 +180,6 @@ $result = $client->call('queue.list_all', array());
 ```
 
 
-
-********************************************************************************
-
-
-
-### Usage with SystemClient
-
-**Init**
-```php
-$sysClient = new \WEPHONE\SDK\SystemClient;
-$sysClient->init("api-key-code");
-```
-
-
-********************************************************************************
-
-
-### ENTERPRISE
-### Create a new enterprise
-
-```php
-$enterpriseData = array(
-    "name" => "Enterprise 1",
-    "domain" => "domain1",
-    "admin_email" => "email@domain.com",
-    "admin_password" => "password",
-    "subscription_pack" => "basic",
-    "did" => '842418001800'
-);
-$sysClient->call('enterprise.create', $enterpriseData);
-```
-
-### Enable an enterprise
-
-```php
-$sysClient->call('enterprise.enable', array("domain" => "domain1"));
-```
-
-### Disable an enterprise
-
-```php
-$sysClient->call('enterprise.disable', array("domain" => "domain1"));
-```
-
-### Get preauthenticated link
-
-```php
-$sysClient->call('user.get_preauthenticated_url', array(
-    "domain" => "domain1", 
-    "email" => "email@domain.com"
-));
-```
-
-### Get numbers available
-
-```php
-$sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
-```
 
 ********************************************************************************
 
