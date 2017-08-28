@@ -118,7 +118,7 @@ $result = $client->call('queue.list_all', array());
 
 
 
-## Usage with SystemClient
+### Usage with SystemClient
 
 **Init**
 ```php
@@ -142,31 +142,34 @@ $enterpriseData = array(
     "subscription_pack" => "basic",
     "did" => '842418001800'
 );
-$result = $sysClient->call('enterprise.create', $enterpriseData);
+$sysClient->call('enterprise.create', $enterpriseData);
 ```
 
 ### Enable an enterprise
 
 ```php
-$result = $sysClient->call('enterprise.enable', array("domain" => "domain1"));
+$sysClient->call('enterprise.enable', array("domain" => "domain1"));
 ```
 
 ### Disable an enterprise
 
 ```php
-$result = $sysClient->call('enterprise.disable', array("domain" => "domain1"));
+$sysClient->call('enterprise.disable', array("domain" => "domain1"));
 ```
 
 ### Get preauthenticated link
 
 ```php
-$result = $sysClient->call('user.get_preauthenticated_url', array("domain" => "domain1", "email" => "email@domain.com"));
+$sysClient->call('user.get_preauthenticated_url', array(
+    "domain" => "domain1", 
+    "email" => "email@domain.com"
+));
 ```
 
 ### Get numbers available
 
 ```php
-$result = $sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
+$sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
 ```
 
 ********************************************************************************
