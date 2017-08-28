@@ -100,7 +100,7 @@ $routingData = array(
     "params"=> array("number"=> "111")
 );
 $result = $client->call('number.set_route', array('routed_number', $routingData));
-
+```
 
 ********************************************************************************
 
@@ -113,6 +113,60 @@ $result = $client->call('queue.list_all', array());
 ```
 
 
+
+********************************************************************************
+
+
+
+### Usage with SystemClient
+
+**Init**
+```php
+$sysClient = new \WEPHONE\SDK\SystemClient;
+$sysClient->init("api-key-code");
+```
+
+
+********************************************************************************
+
+
+### ENTERPRISE
+### Create a new enterprise
+
+```php
+$sysClient->call('enterprise.create', array(
+    "name" => "Enterprise 1",
+    "domain" => "domain1",
+    "admin_email" => "email@domain.com",
+    "admin_password" => "password",
+    "subscription_pack" => "basic",
+    "did" => '842418001800'
+));
+```
+
+### Enable an enterprise
+
+```php
+$sysClient->call('enterprise.enable', array("domain" => "domain1"));
+```
+
+### Disable an enterprise
+
+```php
+$sysClient->call('enterprise.disable', array("domain" => "domain1"));
+```
+
+### Get preauthenticated link
+
+```php
+$sysClient->call('user.get_preauthenticated_url', array("domain" => "domain1", "email" => "email@domain.com"));
+```
+
+### Get numbers available
+
+```php
+$sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
+```
 
 ********************************************************************************
 
