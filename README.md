@@ -102,6 +102,7 @@ $sysClient->call('enterprise.get_user', array(
     "domain" => "domain1", 
     "email" => "email@domain.com"
 ));
+```
 
 ### Get preauthenticated link
 
