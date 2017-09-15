@@ -85,6 +85,24 @@ $sysClient->call('enterprise.enable', array("domain" => "domain1"));
 $sysClient->call('enterprise.disable', array("domain" => "domain1"));
 ```
 
+### Get information of enterprise
+
+```php
+$sysClient->call('enterprise.get_info', array("domain" => "domain1"));
+```
+
+
+### USER
+### Check email exists
+
+Return an array(domain, email) if email already exist and null if user not exist
+
+```php
+$sysClient->call('enterprise.get_user', array(
+    "domain" => "domain1", 
+    "email" => "email@domain.com"
+));
+
 ### Get preauthenticated link
 
 ```php
@@ -94,10 +112,18 @@ $sysClient->call('user.get_preauthenticated_url', array(
 ));
 ```
 
-### Get numbers available
+********************************************************************************
+
+
+### NUMBER
+### Get list of numbers available
+
+Input agruments: 
+- number_prefix: Must be at less most 2 characters
+- limit: [ingeter|null]. It's null if you want to return all numbers available
 
 ```php
-$sysClient->call('number.get_available_list', array("number_prefix" => "8424"));
+$sysClient->call('number.get_available_list', array("number_prefix" => "8424", "limit" => 10));
 ```
 
 ********************************************************************************
