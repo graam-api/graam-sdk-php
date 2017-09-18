@@ -5,6 +5,7 @@ namespace WEPHONE\SDK\Exception;
 /**
  * Locally generated Exception
  */
-class LocalException extends \Exception
+class LocalException extends BaseException
 {
+
 }
