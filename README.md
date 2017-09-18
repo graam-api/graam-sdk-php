@@ -91,6 +91,12 @@ $sysClient->call('enterprise.disable', array("domain" => "domain1"));
 $sysClient->call('enterprise.get_info', array("domain" => "domain1"));
 ```
 
+### Add a number for enterprise
+
+```php
+$sysClient->call('enterprise.add_number', array("domain" => "domain1", "number" => "8418001801"));
+```
+
 
 ### USER
 ### Check email exists
