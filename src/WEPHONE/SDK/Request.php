@@ -50,6 +50,10 @@ class Request
         curl_setopt($c, CURLOPT_POST, true);
         curl_setopt($c, CURLOPT_POSTFIELDS, json_encode((array)$request));
         curl_setopt($c, CURLOPT_FORBID_REUSE, false);
+        
+        if ( (float) phpversion() < 5.6 ) {
+            curl_setopt($c, CURLOPT_SSL_VERIFYPEER, false);
+        }
 
         if (is_string($proxy)) {
             curl_setopt($c, CURLOPT_PROXY, $proxy);
