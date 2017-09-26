@@ -8,7 +8,7 @@ namespace WEPHONE\SDK\Exception;
 class RemoteException extends BaseException
 {
     
-    protected $errorCode;
+    protected $errorCode = 'remote';
     
     /**
      * Constructor
@@ -17,7 +17,9 @@ class RemoteException extends BaseException
      */
     public function __construct(\stdClass $error)
     {
-        $this->errorCode = $error->code;
+        if (property_exists($error, 'code')
+            $this->errorCode = $error->code;
+        }
         parent::__construct($error->message, 0);
     }
 }

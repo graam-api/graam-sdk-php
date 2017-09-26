@@ -7,5 +7,5 @@ namespace WEPHONE\SDK\Exception;
  */
 class LocalException extends BaseException
 {
-
+    protected $errorCode = 'local';
 }

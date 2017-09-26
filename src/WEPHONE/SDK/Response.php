@@ -21,15 +21,16 @@ class Response
     public function __construct($data)
     {
         $data = json_decode($data);
+
         if ($data === false) {
-            throw new Exception\LocalException('JSON_DECODE_ERROR', json_last_error());
+            throw new Exception\LocalException('Invalid data type', 'JSON_DECODE_ERROR');
         }
         /* validation */
         if (!is_object($data)) {
-            throw new Exception\LocalException('RESPONSE_NOT_AN_OBJECT');
+            throw new Exception\LocalException('Data response not an object', 'RESPONSE_NOT_AN_OBJECT');
         }
         if (!( property_exists($data, 'status') && ( property_exists($data, 'error') || property_exists($data, 'answer') ) )) { //property_exists($data, 'id') && property_exists($data, 'jsonrpc') && 
-            throw new Exception\LocalException('RESPONSE_MISSING_PROPERTY');
+            throw new Exception\LocalException('Data response missing property', 'RESPONSE_MISSING_PROPERTY');
         }
         /* response */
         if (property_exists($data, 'error')) {
