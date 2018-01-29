@@ -17,7 +17,7 @@ class RemoteException extends BaseException
      */
     public function __construct(\stdClass $error)
     {
-        if (property_exists($error, 'code')
+        if (property_exists($error, 'code')) {
             $this->errorCode = $error->code;
         }
         parent::__construct($error->message, 0);

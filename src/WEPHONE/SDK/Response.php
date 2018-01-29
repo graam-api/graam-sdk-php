@@ -18,28 +18,21 @@ class Response
      * @param string Raw input
      * @throws \WEPHONE\SDK\Exception\LocalException
      */
-    public function __construct($data)
+    public function __construct($msg)
     {
-        $data = json_decode($data);
-
-        if ($data === false) {
-            throw new Exception\LocalException('Invalid data type', 'JSON_DECODE_ERROR');
-        }
+        $data = json_decode($msg);
         /* validation */
-        if (!is_object($data)) {
-            throw new Exception\LocalException('Data response not an object', 'RESPONSE_NOT_AN_OBJECT');
+        if (is_object($data)) {
+            /* response */
+            if (property_exists($data, 'error')) {
+                $this->error = new Exception\RemoteException($data->error);
+            } else {
+                $this->result = $data->answer;
+            }
         }
-        if (!( property_exists($data, 'status') && ( property_exists($data, 'error') || property_exists($data, 'answer') ) )) { //property_exists($data, 'id') && property_exists($data, 'jsonrpc') && 
-            throw new Exception\LocalException('Data response missing property', 'RESPONSE_MISSING_PROPERTY');
+        else {
+            throw new Exception\RemoteException($msg);
         }
-        /* response */
-        if (property_exists($data, 'error')) {
-            $this->error = new Exception\RemoteException($data->error);
-        } else {
-            $this->result = $data->answer;
-        }
-//         $this->id = $data->id;
-//         $this->jsonrpc = $data->jsonrpc;
     }
 
     /**

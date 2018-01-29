@@ -60,7 +60,6 @@ class Request
         }
 
         $data = curl_exec($c);
-
         /* curl error */
         if ($data === false) {
             throw new Exception\LocalException('CURL_ERROR '. curl_errno($c) .': '.curl_error($c), 'CURL_ERROR');

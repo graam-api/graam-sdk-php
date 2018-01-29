@@ -9,7 +9,7 @@ namespace WEPHONE\SDK;
 
 class Client
 {
-    const API_URL = '/ws/apikey/call_function';
+    const API_URL = 'ws/apikey/call_function';
     const SDK_VERSION = '1.0';
     
 	private $url;
@@ -55,9 +55,20 @@ class Client
 	 * @param string $number: The phone number to be called
 	 * @param integer $timeout: The delay (in seconds) that we expect the number to answer. Otherwise, the call is consider failed
 	 */
-	public function init($apiKey, $domain='wephone-kngo.localnet.dev', $ssl=true) {
-		$url = ($ssl ? 'https' : 'http') . '://' . $domain . self::API_URL;
-		$url .= ( strpos('?', $url) !== false ? '&' : '?' ) . 'apikey=' . $apiKey;
+	public function init($apiKey, $url=null, $ssl=true) {
+		if (!$url) {
+			throw new \Error("Invalid wephone URL '$url'");
+		}
+		if ( strpos($url, 'http://') !== 0 && strpos($url, 'https://') !== 0 ) {
+			$url = ($ssl ? 'https' : 'http') . '://' . $url;
+		}
+		
+		$length = strlen($url);
+		if (substr($url, -$length) !== '/') {
+			$url .= '/';
+		}
+		$url .= self::API_URL;
+		$url .= '?apikey=' . $apiKey;
 		$this->url = $url;
 	}
 
