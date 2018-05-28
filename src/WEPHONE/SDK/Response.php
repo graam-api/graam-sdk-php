@@ -20,6 +20,10 @@ class Response
      */
     public function __construct($msg)
     {
+        if (empty($msg)) {
+            $e = new \stdClass(array('code'=>404, 'message'=>'No response data'));
+            throw new Exception\RemoteException($e);
+        }
         $data = json_decode($msg);
         /* validation */
         if (is_object($data)) {
@@ -31,7 +35,8 @@ class Response
             }
         }
         else {
-            throw new Exception\RemoteException($msg);
+	    $e = new \stdClass(array('code'=>404, 'message'=>$msg));
+            throw new Exception\RemoteException($e);
         }
     }
 
