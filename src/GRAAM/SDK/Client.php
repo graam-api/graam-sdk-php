@@ -55,7 +55,7 @@ class Client
 	 * @param string $number: The phone number to be called
 	 * @param integer $timeout: The delay (in seconds) that we expect the number to answer. Otherwise, the call is consider failed
 	 */
-	public function init($apiKey, $url=null, $ssl=true) {
+	public function init($apiKey, $url="https://admin.graam.com", $ssl=true) {
 		if (!$url) {
 			throw new \Error("Invalid graam URL '$url'");
 		}
