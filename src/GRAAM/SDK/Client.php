@@ -1,9 +1,9 @@
 <?php
-namespace WEPHONE\SDK;
+namespace GRAAM\SDK;
 
 /**
  * Call Router client
- * @author Kien Ngo <kien.ngo@wephone.io>
+ * @author Kien Ngo <kien.ngo@graam.io>
  *
  */
 
@@ -57,7 +57,7 @@ class Client
 	 */
 	public function init($apiKey, $url=null, $ssl=true) {
 		if (!$url) {
-			throw new \Error("Invalid wephone URL '$url'");
+			throw new \Error("Invalid graam URL '$url'");
 		}
 		if ( strpos($url, 'http://') !== 0 && strpos($url, 'https://') !== 0 ) {
 			$url = ($ssl ? 'https' : 'http') . '://' . $url;
@@ -76,8 +76,8 @@ class Client
      * @param string $method JSON-RPC method
      * @param mixed[] $params JSON-RPC parameters
      * @return mixed API response
-     * @throws \WEPHONE\SDK\API\Exception\LocalException
-     * @throws \WEPHONE\SDK\API\Exception\RemoteException
+     * @throws \GRAAM\SDK\API\Exception\LocalException
+     * @throws \GRAAM\SDK\API\Exception\RemoteException
      */
     public function call($method, array $params = [], $id = null)
     {

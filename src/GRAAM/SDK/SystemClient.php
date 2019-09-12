@@ -1,5 +1,5 @@
 <?php
-namespace WEPHONE\SDK;
+namespace GRAAM\SDK;
 
 /**
  * Call Router SystemClient
@@ -55,7 +55,7 @@ class SystemClient
 	 * @param string $number: The phone number to be called
 	 * @param integer $timeout: The delay (in seconds) that we expect the number to answer. Otherwise, the call is consider failed
 	 */
-	public function init($apiKey, $domain='wephone-tvo.localnet.dev', $ssl=true) {
+	public function init($apiKey, $domain='graam-tvo.localnet.dev', $ssl=true) {
 		$url = ($ssl ? 'https' : 'http') . '://' . $domain . self::API_URL;
 		$url .= ( strpos('?', $url) !== false ? '&' : '?' ) . 'apikey=' . $apiKey;
 		$this->url = $url;
@@ -65,8 +65,8 @@ class SystemClient
      * @param string $method JSON-RPC method
      * @param mixed[] $params JSON-RPC parameters
      * @return mixed API response
-     * @throws \WEPHONE\SDK\API\Exception\LocalException
-     * @throws \WEPHONE\SDK\API\Exception\RemoteException
+     * @throws \GRAAM\SDK\API\Exception\LocalException
+     * @throws \GRAAM\SDK\API\Exception\RemoteException
      */
     public function call($method, array $params = [], $id = null)
     {

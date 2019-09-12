@@ -1,9 +1,9 @@
 <?php
-namespace WEPHONE\SDK;
+namespace GRAAM\SDK;
 
 /**
  * Call Router client
- * @author David PHAN <david.phan@wephone.io>
+ * @author David PHAN <david.phan@graam.io>
  *
  */
 

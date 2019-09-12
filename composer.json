@@ -1,8 +1,8 @@
 {
-    "name": "wephone/sdk-php",
+    "name": "graam/sdk-php",
     "autoload": {
         "psr-0" : {
-            "WEPHONE" : "src"
+            "GRAAM" : "src"
         }
     }
 }

@@ -1,9 +1,9 @@
-PHP SDK for WEPHONE API
+PHP SDK for GRAAM API
 ============
 
-JSON-RPC 2.0 PHP class, to use with WEPHONE API.
+JSON-RPC 2.0 PHP class, to use with GRAAM API.
 
-* **API documentation**: http://www.wephone.io/docs/
+* **API documentation**: http://www.graam.io/docs/
 * **SDK Installation guide**: see INSTALLING.php.md
 * **JSON-RPC 2.0 Specification**: http://www.jsonrpc.org/specification
 
@@ -11,8 +11,8 @@ JSON-RPC 2.0 PHP class, to use with WEPHONE API.
 * Can be used for both the [API][docs-api] and [Real-time][docs-realtime] calls
 * Requires: `php5-curl`
 
-[docs-api]: http://wephone.io/docs/
-[docs-realtime]: http://wephone.io/docs/real-time/
+[docs-api]: http://graam.io/docs/
+[docs-realtime]: http://graam.io/docs/real-time/
 
 ## Composer
 
@@ -22,10 +22,10 @@ If you do not have a `composer.json` file yet, create one at the root of your pr
 The `composer.json` file should look like this:
 ```json
 {
-    "name": "wephone/sdk-php",
+    "name": "graam/sdk-php",
     "autoload": {
         "psr-0" : {
-            "WEPHONE" : "src"
+            "GRAAM" : "src"
         }
     }
 }
@@ -50,7 +50,7 @@ This is the API can be called even if not logged on to the system.
 
 **Init**
 ```php
-$sysClient = new \WEPHONE\SDK\SystemClient;
+$sysClient = new \GRAAM\SDK\SystemClient;
 $sysClient->init("api-key-code");
 ```
 
@@ -144,7 +144,7 @@ $sysClient->call('number.get_available_list', array("number_prefix" => "8424", "
 
 **Init**
 ```php
-$client = new \WEPHONE\SDK\Client;
+$client = new \GRAAM\SDK\Client;
 $client->init("api-key-code");
 ```
 
