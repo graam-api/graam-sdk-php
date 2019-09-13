@@ -20,6 +20,6 @@ class RemoteException extends BaseException
         if (property_exists($error, 'code')) {
             $this->errorCode = $error->code;
         }
-        parent::__construct($error->message, 0);
+        parent::__construct(!empty($error->message) ? $error->message : 'Unknown error', 0);
     }
 }
